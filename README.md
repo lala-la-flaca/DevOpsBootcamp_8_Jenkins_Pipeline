@@ -47,11 +47,14 @@ This demo project is part of **Module 8: Build Automation & CI/CD with Jenkins**
 
 ### Installing Maven in Jenkins.
 1. Open the Jenkins server, navigate to Manage Jenkins, and select Tools.
-   <img src="" width=800 />
+   
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/1%20Build%20tools.png" width=800 />
+  
 2. Navigate to the Maven installations section, then click add Maven.
-   <img src="" width=800 />
+
 3. Enter the name and version for Maven.
-   <img src="" width=800 />
+   
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20build%20tools%20maven.png" width=800 />
 
 ### Installing NodeJS and Npm in Jenkins Container.
 1. SSH into DigitalOcean Droplet
