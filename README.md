@@ -162,6 +162,7 @@ To execute docker commands inside the Jenkins container, we must enable docker c
     > jenkins/jenkins:lts
    
    ```
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/attching%20docker%20volume%20to%20jenkins%20container.png" width=800 />
    
 5. Enter the Jenkins container as the root user.
    
@@ -186,6 +187,7 @@ To execute docker commands inside the Jenkins container, we must enable docker c
    ls -l /var/run/docker.sock
    chmod 666 /var/run/docker.sock
    ```
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/Adding%20permission%20to%20w%20and%20r.png" width=800 />
    
 
 ### Creating Jenkins Credentials to Access repositories
