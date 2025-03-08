@@ -142,6 +142,50 @@ This demo project is part of **Module 8: Build Automation & CI/CD with Jenkins**
 
 
 ### Enabling Docker in Jenkins
+To execute docker commands inside the Jenkins container, we must enable docker commands
+1. Stop the currently running Jenkins container.
+
+   ```bash
+   docker ps
+   docker stop d4d4ccb59734
+   ```
+   
+3. Run the Jenkins container and attach a second volume to enable Docker integration.
+   
+   ```bash
+    docker run \
+    > -p 8080:8080 \
+    > -p 50000:50000 \
+    > -d \
+    > -v jenkins_home:/var/jenkins_home \
+    > -v /var/run/docker.sock:/var/run/docker.sock \
+    > jenkins/jenkins:lts
+   
+   ```
+   
+5. Enter the Jenkins container as the root user.
+   
+   ```bash
+   docker ps
+   docker exec -u 0 -it 3c78b942716a bash
+   ```
+   
+7. Use the curl command to fetch the latest Docker version, grant execute permissions to the Docker install script, and then run the Docker install.
+  
+   ```bash
+   curl https://get.docker.com > dockerinstall && chmod 777 dockerinstall && ./dockerinstall
+   ```
+   
+8. Set the appropriate permissions on the docker.sock file to allow Docker commands inside the Jenkins container using the Jenkins user.
+
+    <details><summary><strong>ℹ️ docker.sock file: </strong></summary>
+   It is a unix socker file used by docker daemon (dockerd) to communicate with docker client, allowing you to manage containers, images, and networks. It's at /var/run/docker.sock
+    </details>
+    
+   ```bash
+   chmod 666 /var/run/docker.sock
+   ```
+   
 
 ### Creating Jenkins Credentials to Access repositories
 
