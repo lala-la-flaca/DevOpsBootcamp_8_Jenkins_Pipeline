@@ -81,21 +81,21 @@ This demo project is part of **Module 8: Build Automation & CI/CD with Jenkins**
    whoami
    exit
    ```
-    <img src="" width=800 />
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20Checking%20current%20user.png" width=800 />
    
 5. Enter the Jenkins container using the Root user.
 
    ```bash
    docker exec -u 0 -it d4d4ccb59734 bash
    ```
-    <img src="" width=800 />
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20entering%20container%20as%20root%20user.png" width=800 />
    
 6. Check the Linux distribution inside the Jenkins container.
 
    ```bash
    cat /etc/issue
    ```
-    <img src="" width=800 />
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20Checking%20Linux%20Distribution.png" width=800 />
 
 7. Update the package manager inside the Jenkins container.
 
@@ -107,30 +107,38 @@ This demo project is part of **Module 8: Build Automation & CI/CD with Jenkins**
 
    ```bash
    apt install curl
-   ```
+   ``` 
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20installing%20curl%20and%20updating%20package%20manager.png" width=800 />
 
 9. Use the script to install NodeJS and npm inside the Jenkins container.
 
    ```bash
    curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh
    ls
+   bash nodesource_setup.sh
    ```
-    <img src="" width=800 />
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20installig%20scrpt.png" width=800 />
 
-10. If the script did not work as expected, install Node.js and npm directly inside the Jenkins container using the  shell commands.
+    <details><summary><strong> ⚠️ If the script does not install NodeJS: </strong></summary>
+    
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20nodejs%20not%20installed.png" width=800 />
+
+    If the script does not work as expected, then install Node.js and npm directly inside the Jenkins container using the  shell commands.
 
      ```bash
     apt-get install nodejs -y
      ```
-     <img src="" width=800 />
-
-11. Verify that nodeJS and npm are installed inside the Jenkins container.
+     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20installing%20nodejs%20manually%20a.png" width=800 />
+    
+</details>
+  
+10. Verify that nodeJS and npm are installed inside the Jenkins container.
 
      ```bash
     node -v
     npm -v
      ```
-      <img src="" width=800 />
+      <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20i%20nstalling%20nodejs%20manually.png" width=800 />
 
 
 ### Enabling Docker in Jenkins
