@@ -183,6 +183,7 @@ To execute docker commands inside the Jenkins container, we must enable docker c
     </details>
     
    ```bash
+   ls -l /var/run/docker.sock
    chmod 666 /var/run/docker.sock
    ```
    
