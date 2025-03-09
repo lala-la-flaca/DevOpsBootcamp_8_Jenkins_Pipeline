@@ -239,10 +239,9 @@ The credentials can also be added or modified from the Security section under Cr
        
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/creating%20credentials.png" width=800 />
     
-8. These credentials can now be used in Jenkins jobs when configuring access to a repository.
+8. We followed the same steps to add the Docker Hub and Nexus credentials. These credentials are now available in Jenkins jobs when configuring repository access.
 
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/credentials%20for%20repos.png" width= 800 />
-
 
 
 ### Creating a Freestyle Job
