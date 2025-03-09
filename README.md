@@ -264,14 +264,13 @@ The credentials can also be added or modified from the Security section under Cr
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/credentials%20for%20repos.png" width= 800 />
 
 
-### Creating a Freestyle Job
-1. Open Jenkins and navigate to the Main Menu.
-   
-2. Click New Item, enter a name, and select Freestyle Project.
-3. Connect the job to the repository of the application.
-4. Build a Jar file.
-5. Build a Docker Image.
-6. Push the image to the DockerHub repository.
+### Creating a Freestyle Job for a Java Maven Application
+1. Open Jenkins and navigate to the Main Menu.   
+2. Click New Item, enter a Job Name, and select Freestyle Project.
+3. In the Source Code Management section, connect the job to the Git repository where the application is stored.
+4. Configure the Build Steps to compile the application and generate a JAR file.
+5. Add a step to build a Docker image using the generated JAR file.
+6. Configure the job to push the Docker image to the DockerHub repository.
 
    <img src="" width=800 />
 
