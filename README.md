@@ -140,6 +140,26 @@ This demo project is part of **Module 8: Build Automation & CI/CD with Jenkins**
      ```
       <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20i%20nstalling%20nodejs%20manually.png" width=800 />
 
+### Enabling NodeJS in Jenkins via WebUI
+To enable Jenkins through the webUI, we must install the NodeJS pluging as follows and enable it in the Tools:
+1. Navigate to the Jenkins Main Menu and click on Manage Jenkins.
+  
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/3%20Installing%20pluggins.png" width=800 />
+   
+3. Click on Plugins, then go to the Available Plugins tab.
+   
+5. In the search bar, type NodeJS, select the plugin, and click Install.
+   
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/3%20installing%20nojdejs%20pluggins.png" width=800 />
+   
+7. To enable NodeJS in the tools section, navigate to Manage Jenkins and click on Tools.
+
+9. Locate the NodeJS Installation section and click Add NodeJS.
+   
+11. Enter a Name and specify the Version of NodeJS.
+    
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/4%20configuring%20nodejs%20tool.png" width=800 />
+   
 
 ### Enabling Docker in Jenkins
 To execute docker commands inside the Jenkins container, we must enable docker commands
@@ -245,6 +265,15 @@ The credentials can also be added or modified from the Security section under Cr
 
 
 ### Creating a Freestyle Job
+1. Open Jenkins and navigate to the Main Menu.
+   
+2. Click New Item, enter a name, and select Freestyle Project.
+3. Connect the job to the repository of the application.
+4. Build a Jar file.
+5. Build a Docker Image.
+6. Push the image to the DockerHub repository.
+
+   <img src="" width=800 />
 
    
    
