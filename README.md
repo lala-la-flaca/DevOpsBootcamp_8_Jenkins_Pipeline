@@ -2,7 +2,7 @@
 
 ## Description
 
-This demo project is part of **Module 8: Build Automation & CI/CD with Jenkins** from the **Nana DevOps Bootcamp**. It focuses on setting up a **Continuous Integration (CI) pipeline** fora java maven application in Jenkins using different job types:
+This demo project is part of **Module 8: Build Automation & CI/CD with Jenkins** from the **Nana DevOps Bootcamp**. It focuses on setting up a **Continuous Integration (CI) pipeline** for a Java Maven application in Jenkins using different job types:
 - <b>Freestyle Job.</b>
 - <b>Pipeline Job.</b>
 - <b>Multibranch Pipeline Job.</b>
@@ -190,7 +190,62 @@ To execute docker commands inside the Jenkins container, we must enable docker c
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/Adding%20permission%20to%20w%20and%20r.png" width=800 />
    
 
-### Creating Jenkins Credentials to Access repositories
+### Creating Jenkins Credentials to Access Git Using a Job
+The Git credentials can be added while creating the Job as follows:
+1. Open Jenkins and navigate to the Main Menu.
+   
+2. Click New Item, enter a name, and select Freestyle Project.
+
+3. In the Source Code Management section, choose Git and enter the repository URL.
+
+   <img src="" width=800 />
+   
+4. Under Credentials, click Add → Jenkins..
+  
+5. Keep the default Domain and select Username with password in the Kind section.
+  
+6. Enter your Git username and password.
+
+   <img src="" width=800 />
+    
+7. Assign an ID to the credentials and click Add.
+  
+8. Save the Job
+
+
+### Adding or Modifying Credentials in Jenkins Security Settings
+The credentials can also be added or modified from the Security section under Credentials as follows:
+1. Navigate to Manage Jenkins → Security → Credentials.
+   
+    <img src="" width=800 />
+    
+3. Select the appropriate Domain or create a new one if needed.
+      
+    <img src="" width=800 />
+    
+5. Click Add Credentials.
+      
+    <img src="" width=800 />
+    
+7. Choose Username with password as the Kind.
+      
+    <img src="" width=800 />
+    
+9. Enter your Git username and password.
+       
+    <img src="" width=800 />
+    
+11. Assign an ID and a Description for easy identification.
+       
+    <img src="" width=800 />
+    
+13. Click OK to save the credentials.
+       
+    <img src="" width=800 />
+    
+15. These credentials can now be used in Jenkins jobs when configuring access to a repository.
+
+
 
 ### Creating a Freestyle Job
 
