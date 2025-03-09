@@ -103,7 +103,7 @@ This demo project is part of **Module 8: Build Automation & CI/CD with Jenkins**
    apt update
    ```
 
-8. Install curl command inside the Jenkins container.
+8. Install the curl command inside the Jenkins container.
 
    ```bash
    apt install curl
@@ -132,7 +132,7 @@ This demo project is part of **Module 8: Build Automation & CI/CD with Jenkins**
     
 </details>
   
-10. Verify that nodeJS and npm are installed inside the Jenkins container.
+10. Verify that NodeJS and npm are installed inside the Jenkins container.
 
      ```bash
     node -v
@@ -197,16 +197,16 @@ The Git credentials can be added while creating the Job as follows:
 2. Click New Item, enter a name, and select Freestyle Project.
 
 3. In the Source Code Management section, choose Git and enter the repository URL.
-
-   <img src="" width=800 />
    
 4. Under Credentials, click Add → Jenkins..
+
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/1%20adding%20git%20repository.png" width=800 />
   
 5. Keep the default Domain and select Username with password in the Kind section.
   
 6. Enter your Git username and password.
 
-   <img src="" width=800 />
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20adding%20credentials%20and%20id.png" width=800 />
     
 7. Assign an ID to the credentials and click Add.
   
@@ -217,33 +217,31 @@ The Git credentials can be added while creating the Job as follows:
 The credentials can also be added or modified from the Security section under Credentials as follows:
 1. Navigate to Manage Jenkins → Security → Credentials.
    
-    <img src="" width=800 />
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/add%20dockerhub%20credentials%20to%20jenkins%201.png" width=800 />
     
+2. Select the store.
+   
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/select%20store.png" width=800 />
+   
 3. Select the appropriate Domain or create a new one if needed.
       
-    <img src="" width=800 />
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/domain.png" width=800 />
     
-5. Click Add Credentials.
+4. Click Add Credentials.
       
-    <img src="" width=800 />
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/add%20credntials.png" width=800 />
     
-7. Choose Username with password as the Kind.
-      
-    <img src="" width=800 />
+5. Enter a username and password in the kind section.
+   
+6. Assign an ID and a Description for easy identification.
     
-9. Enter your Git username and password.
+7. Click OK to save the credentials.
        
-    <img src="" width=800 />
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/creating%20credentials.png" width=800 />
     
-11. Assign an ID and a Description for easy identification.
-       
-    <img src="" width=800 />
-    
-13. Click OK to save the credentials.
-       
-    <img src="" width=800 />
-    
-15. These credentials can now be used in Jenkins jobs when configuring access to a repository.
+8. These credentials can now be used in Jenkins jobs when configuring access to a repository.
+
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/credentials%20for%20repos.png" width= 800 />
 
 
 
