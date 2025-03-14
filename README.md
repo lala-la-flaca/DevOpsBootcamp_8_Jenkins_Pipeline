@@ -329,7 +329,7 @@ The credentials can also be added or modified from the Security section under Cr
 
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/image%20available%20on%20docker%20hub.PNG" width=800 />
 
-### Setting up Nexus Repository
+### Pushing imag to Docker Nexus Repository
 1. Ensure that Nexus from Module 6 is running.
 2. Add insecure registries to the daemon.json file on the droplet hosting Jenkins. If the file does not exist, then it must be created.
 
