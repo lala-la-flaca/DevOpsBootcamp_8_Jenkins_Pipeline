@@ -300,7 +300,17 @@ The credentials can also be added or modified from the Security section under Cr
    Jenkins cannot find the pom.xml file when using the package command. For more information, refer to the Troubleshooting section.
    </details>
    
-7. Add a step to build a Docker image.
+7.  Verify that the jar file was successfuly created on the droplet. The jar file is located in the target folder workspace>java-maven-build>java-maven-app>target.
+
+   ```bash
+    docker volume ls
+    docker inspect jenkins_home
+    cd /var/snap/docker/common/var-lib-docker/volumes/jenkins_home/_data/workspace/java-maven-build/java-maven-app/target
+   ```
+
+  <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/jar%20file%20availabe%20in%20target%20folder.png"  width=800 />
+   
+8. Add a step to build a Docker image.
 
     ```bash
     cd java-maven-app/
@@ -314,7 +324,7 @@ The credentials can also be added or modified from the Security section under Cr
      Jenkins cannot log in to Docker Hub. For more information, refer to the Troubleshooting section.
    </details>
    
-8. Push the image to the DockerHub repository.
+9. Push the image to the DockerHub repository.
 
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/image%20available%20on%20docker%20hub.PNG" width=800 />
 
@@ -352,7 +362,7 @@ When attempting to log in to Docker Hub using the docker login command, Jenkins 
 Ensure that the environment variable names match exactly between the Jenkins configuration and the docker login command. Since Jenkins is case-sensitive, updating the variable names to uppercase resolved the issue.
 
 <details><summary><strong> Jenkins Console Output  </strong></summary>
-   <img src="" width=800 />
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/error%20when%20using%20env%20variables.png" width=800 />
 </details>
 
 
