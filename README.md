@@ -16,7 +16,8 @@ This demo project is part of **Module 8: Build Automation & CI/CD with Jenkins**
 - <b>Jenkins: Automation for CI/CD.</b>
 - <b>Linux: Ubuntu for Server configuration and management.</b>
 - <b>Digital Ocean: Cloud provider for hosting Jenkins server.</b>
-- <b>GitHub & DockerHub & Nexus: Docker private repositories</b>
+- <b>GitHub: repository where the application is stored</b>
+- <b>DockerHub & Nexus: Docker private repository</b>
 - <b>Maven: Build tool for Java application.</b>
 - <b>Nana's Java Application: Java application developed by Nana from the Bootcamp</b>
 
