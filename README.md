@@ -328,6 +328,68 @@ The credentials can also be added or modified from the Security section under Cr
 
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/image%20available%20on%20docker%20hub.PNG" width=800 />
 
+### Setting up Nexus Repository
+1. Ensure that Nexus from Module 6 is running.
+2. Add insecure registries to the daemon.json file on the droplet hosting Jenkins. If the file does not exist, then it must be created.
+
+   ```bash
+   cd /var/snap/docker/2976/config
+   ls
+   vim daemon.json
+   ```
+   ```bash
+   {
+    "log-level":        "error",
+    "insecure-registries": ["157.230.56.153:8083","157.230.56.153:8084"]
+   }   
+   ```
+
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/adding%20insecure%20registries%20nexus.png" width=800 />
+   
+3. Restart the docker daemon using the following command.
+
+   ```bash
+   sudo snap restart docker
+   ```
+   
+4. Run the Jenkins container using the following command.
+   
+   ```bash
+   docker ps -la
+   docker start 63c78b942716a
+   ```
+   
+5. Access the Jenkins container and grant permission to the docker socket (docker.sock) as follows
+
+    ```bash
+   docker exec -u 0 -it 3c78b942716a bash
+   chmod 666 /var/run/docker.sock
+   ls -l /var/run/docker.sock
+   exit
+   ```
+    
+6. Access Jenkins WebUI.
+7. Add the Nexus credentials as explained in the "Adding or Modifying Credentials in Jenkins Security Settings" section.
+8. Navigate to the Dashboard, select the java-maven-build job, and click Configure.
+
+     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/dashboard%20configure.png" width=800 />
+     
+9. Go to the environment section and update the credentials from DockerHub to Nexus-repository.
+10. Keep the Invoke top-level Maven Targets.
+11. Modify the Build step Execute shell to update the docker commands.
+
+    ```bash
+    cd java-maven-app/
+    docker build -t java-maven-app:1.1 .
+    docker tag java-maven-app:1.1 157.230.56.153:8083/java-maven-app:1.1
+    echo $PASSWORD | docker login -u $USERNAME --password-stdin 157.230.56.153:8083
+    docker push 157.230.56.153:8083/java-maven-app:1.1
+    ```
+12. Image Available in Nexus repository
+
+     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/image%20available%20nexus%20docker%20repo.png" width=800 />
+
+
    
 ## ❌ Troubleshooting & Fixes
 
