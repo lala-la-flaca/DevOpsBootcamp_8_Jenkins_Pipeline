@@ -142,7 +142,7 @@ This demo project is part of **Module 8: Build Automation & CI/CD with Jenkins**
       <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20i%20nstalling%20nodejs%20manually.png" width=800 />
 
 ### Enabling NodeJS in Jenkins via WebUI
-To enable Jenkins through the webUI, we must install the NodeJS pluging as follows and enable it in the Tools:
+To enable NodeJS through the webUI, we must install the NodeJS pluging as follows and enable it in the Tools:
 1. Navigate to the Jenkins Main Menu and click on Manage Jenkins.
   
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/3%20Installing%20pluggins.png" width=800 />
