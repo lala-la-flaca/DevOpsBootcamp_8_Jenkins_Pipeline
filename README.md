@@ -157,8 +157,8 @@ To enable Jenkins through the webUI, we must install the NodeJS pluging as follo
 9. Locate the NodeJS Installation section and click Add NodeJS.
    
 11. Enter a Name and specify the Version of NodeJS.
-    
-   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/4%20configuring%20nodejs%20tool.png" width=800 />
+
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/4%20configuring%20nodejs%20tool.png" width=800 />
    
 
 
