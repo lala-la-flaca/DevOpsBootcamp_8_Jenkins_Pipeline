@@ -130,7 +130,7 @@ This demo project is part of **Module 8: Build Automation & CI/CD with Jenkins**
      ```
      <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20installing%20nodejs%20manually%20a.png" width=800 />
     
-</details>
+    </details>
   
 10. Verify that NodeJS and npm are installed inside the Jenkins container.
 
@@ -161,6 +161,7 @@ To enable Jenkins through the webUI, we must install the NodeJS pluging as follo
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/4%20configuring%20nodejs%20tool.png" width=800 />
    
 
+
 ### Enabling Docker in Jenkins
 To execute docker commands inside the Jenkins container, we must enable docker commands
 1. Stop the currently running Jenkins container.
@@ -174,12 +175,12 @@ To execute docker commands inside the Jenkins container, we must enable docker c
    
    ```bash
     docker run \
-    > -p 8080:8080 \
-    > -p 50000:50000 \
-    > -d \
-    > -v jenkins_home:/var/jenkins_home \
-    > -v /var/run/docker.sock:/var/run/docker.sock \
-    > jenkins/jenkins:lts
+    -p 8080:8080 \
+    -p 50000:50000 \
+    -d \
+    -v jenkins_home:/var/jenkins_home \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    jenkins/jenkins:lts
    
    ```
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/attching%20docker%20volume%20to%20jenkins%20container.png" width=800 />
@@ -208,6 +209,7 @@ To execute docker commands inside the Jenkins container, we must enable docker c
    chmod 666 /var/run/docker.sock
    ```
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/Adding%20permission%20to%20w%20and%20r.png" width=800 />
+
    
 
 ### Creating Jenkins Credentials to Access Git Using a Job
@@ -231,6 +233,7 @@ The Git credentials can be added while creating the Job as follows:
 7. Assign an ID to the credentials and click Add.
   
 8. Save the Job
+
 
 
 ### Adding or Modifying Credentials in Jenkins Security Settings
@@ -264,16 +267,93 @@ The credentials can also be added or modified from the Security section under Cr
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/credentials%20for%20repos.png" width= 800 />
 
 
+
 ### Creating a Freestyle Job for a Java Maven Application
-1. Open Jenkins and navigate to the Main Menu.   
-2. Click New Item, enter a Job Name, and select Freestyle Project.
-3. In the Source Code Management section, connect the job to the Git repository where the application is stored.
-4. Configure the Build Steps to compile the application and generate a JAR file.
-5. Add a step to build a Docker image using the generated JAR file.
-6. Configure the job to push the Docker image to the DockerHub repository.
+1. Create an account on Docker Hub and create a repository.
+
+   [DockerHub](https://hub.docker.com/)
+
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/create%20a%20docker%20repository%20on%20docker%20hub.PNG" width=800 />
+   
+3. Open Jenkins and navigate to the Main Menu.   
+4. Click New Item, enter a Job Name, and select Freestyle Project.
+
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/FreeStyleJobMaven.png" width=800 />
+   
+6. In the Source Code Management section, connect the job to the Git repository where the application is stored.
+
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/configuring%20git.png" width=800 />
+   
+8. Map the environment variables to the previously stored GitHub credentials in the Environment section. Use a variable for username and password and select the github credentials.
 
    <img src="" width=800 />
+   
+10. Configure the build steps in Jenkins to compile the application and generate a JAR file, go to the Build section in the job configuration. Click Add Build Step and select Invoke top-level Maven targets. 
+   From the Maven Version dropdown, choose the appropriate Maven installation configured in Jenkins. In the Goals field, enter package to compile the application and generate a JAR file.
+
+   ```bash
+   -f java-maven-app/pom.xml package
+   ```
+   
+   <details><summary><strong> ❌ Issue  </strong></summary>
+   Jenkins cannot find the pom.xml file when using the package command. For more information, refer to the Troubleshooting section.
+   </details>
+   
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/Maven%20build%20step.png" width=800 />
+   
+11. Add a step to build a Docker image.
+
+    ```bash
+    cd java-maven-app/
+    docker build -t lala011/demo-app:jma-1.0 .
+    docker login -u $USERNAME -p PASSWORD
+    docker push lala011/demo-app:jma-1.0
+    ```
+   
+   <details><summary><strong> ❌ Issue  </strong></summary>
+     Jenkins cannot log in to Docker Hub. For more information, refer to the Troubleshooting section.
+   </details>
+
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/pushing%20image%20to%20dockerhub.PNG" width=800 />
+   
+11. Push the image to the DockerHub repository.
+
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/image%20available%20on%20docker%20hub.PNG" width=800 />
 
    
-   
+## ❌ Troubleshooting & Fixes
+
+🔴 **Issue**: Jenkins cannot access the pom.xml file
+
+📄 **Description**:
+When using the package command to build the JAR file, Jenkins was unable to locate the pom.xml file. This occurred because Jenkins executed the command from the root directory where the Git branch was checked out. In this case, the branch contained additional files, and the pom.xml file was located inside the java-maven-app directory.
+
+✅ **Solution**:
+To resolve this issue, we explicitly specified the path to the pom.xml file using the -f option. This directs Jenkins to the correct location of the pom.xml file within the java-maven-app directory.
+
+Use the following command in the top-level Maven targets field:
+
+```bash
+  -f java-maven-app/pom.xml package
+```
+This ensures Jenkins can successfully find and execute the Maven build process from the correct location.
+<details><summary><strong> Jenkins Console Output  </strong></summary>
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/Build%20nok%20before%20modifications.PNG" width=800 />
+</details>
+
+
+
+
+🔴 **Issue**: Jenkins cannot log in to Docker Hub
+📄 **Description**:
+When attempting to log in to Docker Hub using the docker login command, Jenkins was unable to access the environment variables containing the credentials. This issue occurred because the environment variables were defined in lowercase, while the command referenced them using uppercase, and Jenkins treats environment variables as case-sensitive.
+
+✅ **Solution**:
+Ensure that the environment variable names match exactly between the Jenkins configuration and the docker login command. Since Jenkins is case-sensitive, updating the variable names to uppercase resolved the issue.
+
+<details><summary><strong> Jenkins Console Output  </strong></summary>
+   <img src="" width=800 />
+</details>
+
+
       
