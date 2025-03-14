@@ -275,33 +275,32 @@ The credentials can also be added or modified from the Security section under Cr
 
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/create%20a%20docker%20repository%20on%20docker%20hub.PNG" width=800 />
    
-3. Open Jenkins and navigate to the Main Menu.   
-4. Click New Item, enter a Job Name, and select Freestyle Project.
+2. Open Jenkins and navigate to the Main Menu.   
+3. Click New Item, enter a Job Name, and select Freestyle Project.
 
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/FreeStyleJobMaven.png" width=800 />
    
-6. In the Source Code Management section, connect the job to the Git repository where the application is stored.
+4. In the Source Code Management section, connect the job to the Git repository where the application is stored.
 
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/configuring%20git.png" width=800 />
    
-8. Map the environment variables to the previously stored GitHub credentials in the Environment section. Use a variable for username and password and select the github credentials.
+5. Map the environment variables to the previously stored GitHub credentials in the Environment section. Use a variable for username and password and select the github credentials.
 
    <img src="" width=800 />
    
-10. Configure the build steps in Jenkins to compile the application and generate a JAR file, go to the Build section in the job configuration. Click Add Build Step and select Invoke top-level Maven targets. 
-   From the Maven Version dropdown, choose the appropriate Maven installation configured in Jenkins. In the Goals field, enter package to compile the application and generate a JAR file.
+6. Configure the build steps in Jenkins to compile the application and generate a JAR file, go to the Build section in the job configuration. Click Add Build Step and select Invoke top-level Maven targets. From the Maven Version drop-down, choose the appropriate Maven installation configured in Jenkins. In the Goals field, enter package to compile the application and generate a JAR file.
 
-   ```bash
-   -f java-maven-app/pom.xml package
-   ```
+    ```bash
+     -f java-maven-app/pom.xml package
+     ```
+
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/Maven%20build%20step.png" width=800 />
    
    <details><summary><strong> ❌ Issue  </strong></summary>
    Jenkins cannot find the pom.xml file when using the package command. For more information, refer to the Troubleshooting section.
    </details>
    
-   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/Maven%20build%20step.png" width=800 />
-   
-11. Add a step to build a Docker image.
+7. Add a step to build a Docker image.
 
     ```bash
     cd java-maven-app/
@@ -309,14 +308,13 @@ The credentials can also be added or modified from the Security section under Cr
     docker login -u $USERNAME -p PASSWORD
     docker push lala011/demo-app:jma-1.0
     ```
-   
-   <details><summary><strong> ❌ Issue  </strong></summary>
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/pushing%20image%20to%20dockerhub.PNG" width=800 />
+
+    <details><summary><strong> ❌ Issue  </strong></summary>
      Jenkins cannot log in to Docker Hub. For more information, refer to the Troubleshooting section.
    </details>
-
-   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/pushing%20image%20to%20dockerhub.PNG" width=800 />
    
-11. Push the image to the DockerHub repository.
+8. Push the image to the DockerHub repository.
 
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/image%20available%20on%20docker%20hub.PNG" width=800 />
 
