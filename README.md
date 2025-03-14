@@ -284,9 +284,9 @@ The credentials can also be added or modified from the Security section under Cr
 
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/configuring%20git.png" width=800 />
    
-5. Map the environment variables to the previously stored GitHub credentials in the Environment section. Use a variable for username and password and select the github credentials.
+5. Map the environment variables to the stored GitHub credentials by selecting Use secret text or file, adding username and password variables, and choosing the credentials.
 
-   <img src="" width=800 />
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/credentials%20github%20env%20file%20jenkins.png" width=800 />
    
 6. Configure the build steps in Jenkins to compile the application and generate a JAR file, go to the Build section in the job configuration. Click Add Build Step and select Invoke top-level Maven targets. From the Maven Version drop-down, choose the appropriate Maven installation configured in Jenkins. In the Goals field, enter package to compile the application and generate a JAR file.
 
@@ -299,18 +299,18 @@ The credentials can also be added or modified from the Security section under Cr
    <details><summary><strong> ❌ Issue  </strong></summary>
    Jenkins cannot find the pom.xml file when using the package command. For more information, refer to the Troubleshooting section.
    </details>
-   
-7.  Verify that the jar file was successfuly created on the droplet. The jar file is located in the target folder workspace>java-maven-build>java-maven-app>target.
+
+7. Verify that the jar file was successfuly created on the droplet. The jar file is located in the target folder workspace>java-maven-build>java-maven-app>target.
 
    ```bash
-    docker volume ls
-    docker inspect jenkins_home
-    cd /var/snap/docker/common/var-lib-docker/volumes/jenkins_home/_data/workspace/java-maven-build/java-maven-app/target
+   docker volume ls
+   docker inspect jenkins_home
+   cd /var/snap/docker/common/var-lib-docker/volumes/jenkins_home/_data/workspace/java-maven-build/java-maven-app/target
    ```
 
-  <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/jar%20file%20availabe%20in%20target%20folder.png"  width=800 />
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/jar%20file%20availabe%20in%20target%20folder.png"  width=800 />
    
-8. Add a step to build a Docker image.
+9. Add a step to build a Docker image.
 
     ```bash
     cd java-maven-app/
@@ -324,7 +324,7 @@ The credentials can also be added or modified from the Security section under Cr
      Jenkins cannot log in to Docker Hub. For more information, refer to the Troubleshooting section.
    </details>
    
-9. Push the image to the DockerHub repository.
+10. Push the image to the DockerHub repository.
 
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/image%20available%20on%20docker%20hub.PNG" width=800 />
 
