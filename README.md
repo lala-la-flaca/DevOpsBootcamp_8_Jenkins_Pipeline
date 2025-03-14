@@ -323,7 +323,7 @@ The credentials can also be added or modified from the Security section under Cr
    
 ## ❌ Troubleshooting & Fixes
 
-🔴 **Issue**: Jenkins cannot access the pom.xml file
+### 🔴 **Issue**: Jenkins cannot access the pom.xml file
 
 📄 **Description**:
 When using the package command to build the JAR file, Jenkins was unable to locate the pom.xml file. This occurred because Jenkins executed the command from the root directory where the Git branch was checked out. In this case, the branch contained additional files, and the pom.xml file was located inside the java-maven-app directory.
@@ -344,7 +344,9 @@ This ensures Jenkins can successfully find and execute the Maven build process f
 
 
 
-🔴 **Issue**: Jenkins cannot log in to Docker Hub
+
+### 🔴 **Issue**: Jenkins cannot log in to Docker Hub
+
 📄 **Description**:
 When attempting to log in to Docker Hub using the docker login command, Jenkins was unable to access the environment variables containing the credentials. This issue occurred because the environment variables were defined in lowercase, while the command referenced them using uppercase, and Jenkins treats environment variables as case-sensitive.
 
