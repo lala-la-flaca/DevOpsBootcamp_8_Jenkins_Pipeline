@@ -146,17 +146,17 @@ To enable Jenkins through the webUI, we must install the NodeJS pluging as follo
   
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/3%20Installing%20pluggins.png" width=800 />
    
-3. Click on Plugins, then go to the Available Plugins tab.
+2. Click on Plugins, then go to the Available Plugins tab.
    
-5. In the search bar, type NodeJS, select the plugin, and click Install.
+3. In the search bar, type NodeJS, select the plugin, and click Install.
    
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/3%20installing%20nojdejs%20pluggins.png" width=800 />
    
-7. To enable NodeJS in the tools section, navigate to Manage Jenkins and click on Tools.
+4. To enable NodeJS in the tools section, navigate to Manage Jenkins and click on Tools.
 
-9. Locate the NodeJS Installation section and click Add NodeJS.
+5. Locate the NodeJS Installation section and click Add NodeJS.
    
-11. Enter a Name and specify the Version of NodeJS.
+6. Enter a Name and specify the Version of NodeJS.
 
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/4%20configuring%20nodejs%20tool.png" width=800 />
    
@@ -171,7 +171,7 @@ To execute docker commands inside the Jenkins container, we must enable docker c
    docker stop d4d4ccb59734
    ```
    
-3. Run the Jenkins container and attach a second volume to enable Docker integration.
+2. Run the Jenkins container and attach a second volume to enable Docker integration.
    
    ```bash
     docker run \
@@ -185,20 +185,20 @@ To execute docker commands inside the Jenkins container, we must enable docker c
    ```
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/attching%20docker%20volume%20to%20jenkins%20container.png" width=800 />
    
-5. Enter the Jenkins container as the root user.
+3. Enter the Jenkins container as the root user.
    
    ```bash
    docker ps
    docker exec -u 0 -it 3c78b942716a bash
    ```
    
-7. Use the curl command to fetch the latest Docker version, grant execute permissions to the Docker install script, and then run the Docker install.
+4. Use the curl command to fetch the latest Docker version, grant execute permissions to the Docker install script, and then run the Docker install.
   
    ```bash
    curl https://get.docker.com > dockerinstall && chmod 777 dockerinstall && ./dockerinstall
    ```
    
-8. Set the appropriate permissions on the docker.sock file to allow Docker commands inside the Jenkins container using the Jenkins user.
+5. Set the appropriate permissions on the docker.sock file to allow Docker commands inside the Jenkins container using the Jenkins user.
 
     <details><summary><strong>ℹ️ docker.sock file: </strong></summary>
    It is a unix socker file used by docker daemon (dockerd) to communicate with docker client, allowing you to manage containers, images, and networks. It's at /var/run/docker.sock
@@ -262,7 +262,7 @@ The credentials can also be added or modified from the Security section under Cr
        
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/creating%20credentials.png" width=800 />
     
-8. We followed the same steps to add the Docker Hub and Nexus credentials. These credentials are now available in Jenkins jobs when configuring repository access.
+8. We followed the same steps to add the Docker Hub and Nexus credentials. These credentials are now available in Jenkins jobs.
 
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/credentials%20for%20repos.png" width= 800 />
 
