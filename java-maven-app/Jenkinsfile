@@ -24,12 +24,12 @@ pipeline {
                         withCredentials([
                             usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PWD', usernameVariable: 'USER')]){
                                     sh '''
-                                    cd java-maven-app/
-                                    echo "pasword: $PWD"
-                                    echo "username: $USER"
-                                    docker build -t lala011/demo-app:jma-2.0 .
-                                    echo "${PWD}" | docker login -u "${USER}" --password-stdin
-                                    docker push lala011/demo-app:jma-2.0
+                                        cd java-maven-app/
+                                        echo "password: (masked)"
+                                        echo "username: $USER"
+                                        docker build -t lala011/demo-app:jma-2.0 .
+                                        echo $PWD | docker login -u $USER --password-stdin
+                                        docker push lala011/demo-app:jma-2.0
                                     '''                               
                             }
                        
