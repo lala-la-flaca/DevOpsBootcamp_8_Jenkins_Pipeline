@@ -28,7 +28,7 @@ pipeline {
                                     echo "pasword: $PWD"
                                     echo "username: $USER"
                                     docker build -t lala011/demo-app:jma-2.0 .
-                                    docker login -u $USER -p $PWD
+                                    echo $PWD | docker login -u $USER --password-stdin
                                     docker push lala011/demo-app:jma-2.0
                                     '''                               
                             }
