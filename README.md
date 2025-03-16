@@ -502,12 +502,14 @@ The credentials can also be added or modified from the Security section under Cr
    
 ## ❌ Troubleshooting & Fixes
 
-### 🔴 **Issue**: Jenkins cannot access the pom.xml file
+### 🔴 **Issue**: Freestyle Job - Jenkins cannot access the pom.xml file
 
-📄 **Description**:
+<b>📄 Description: </b></br>
+
 When using the package command to build the JAR file, Jenkins was unable to locate the pom.xml file. This occurred because Jenkins executed the command from the root directory where the Git branch was checked out. In this case, the branch contained additional files, and the pom.xml file was located inside the java-maven-app directory.
 
-✅ **Solution**:
+<b>✅ Solution: </b></br>
+
 To resolve this issue, we explicitly specified the path to the pom.xml file using the -f option. This directs Jenkins to the correct location of the pom.xml file within the java-maven-app directory.
 
 Use the following command in the top-level Maven targets field:
@@ -524,12 +526,14 @@ This ensures Jenkins can successfully find and execute the Maven build process f
 
 
 
-### 🔴 **Issue**: Jenkins cannot log in to Docker Hub
+### 🔴 **Issue**: Freestyle Job - Jenkins cannot log in to Docker Hub
 
-📄 **Description**:
+<b>📄 Description: </b></br>
+
 When attempting to log in to Docker Hub using the docker login command, Jenkins was unable to access the environment variables containing the credentials. This issue occurred because the environment variables were defined in lowercase, while the command referenced them using uppercase, and Jenkins treats environment variables as case-sensitive.
 
-✅ **Solution**:
+<b>✅ Solution: </b></br>
+
 Ensure that the environment variable names match exactly between the Jenkins configuration and the docker login command. Since Jenkins is case-sensitive, updating the variable names to uppercase resolved the issue.
 
 <details><summary><strong> Jenkins Console Output  </strong></summary>
@@ -541,10 +545,12 @@ Ensure that the environment variable names match exactly between the Jenkins con
 ### 🔴 **Issue**: Pipeline Job - The Shell session does not change the directory for the subsequent commands.
 
 
-📄 **Description**:
+<b>📄 Description: </b></br>
+
 The mvn package command fails because the directory change occurs in a separate shell session using the sh command. Each sh command runs in its own shell, so cd does not persist between steps. Use dir to maintain the working directory across sh commands.
 
-✅ **Solution**:
+<b>✅ Solution: </b></br>
+
 To fix this issue, we had to use the dir to keep the directory between steps:
  
   ```bash
@@ -555,10 +561,11 @@ To fix this issue, we had to use the dir to keep the directory between steps:
 
 ### 🔴 **Issue**: Pipeline Job - The Docker login fails with variables because of incorrect string interpolation.
 
-📄 **Description**:
+<b>📄 Description: </b></br>
+
 The Docker login command fails to pass the username and password correctly. This occurs because the shell block uses single quotes instead of double quotes, preventing the variables from expanding to their values.
 
-✅ **Solution**:
+<b>✅ Solution: </b></br>
 
 Use double quotes instead of single quotes in the shell block to enable proper string interpolation.
 
