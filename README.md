@@ -32,7 +32,7 @@ This demo project is part of **Module 8: Build Automation & CI/CD with Jenkins**
   - <b>Build Jar file.</b>
   - <b>Create a Docker Image.</b>
   - <b>Push the image to private DockerHub repository</b>
-  - <b>Push the image to private Nexus Docker repository</b>
+  - <b>Push the image to the private Nexus Docker repository</b>
 
 ## 📝 Prerequisites
 - <b>Ensure that Nexus Repository from module 6 is running.</b>
@@ -329,7 +329,7 @@ The credentials can also be added or modified from the Security section under Cr
 
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/image%20available%20on%20docker%20hub.PNG" width=800 />
 
-### Pushing imag to Docker Nexus Repository
+### Pushing image to Docker Nexus Repository
 1. Ensure that Nexus from Module 6 is running.
 2. Add insecure registries to the daemon.json file on the droplet hosting Jenkins. If the file does not exist, then it must be created.
 
@@ -391,6 +391,114 @@ The credentials can also be added or modified from the Security section under Cr
      <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/image%20available%20nexus%20docker%20repo.png" width=800 />
 
 
+
+### Creating a Pipeline Job for a Java Maven Application 
+1. Open Jenkins and go to the Main Menu.
+2. Click New Item, enter a Job Name, and select Pipeline Project.
+
+   <img src="" width=800 />
+   
+3. In the Source Code Management section, connect the job to the Git repository where the application is stored.
+
+   <img src="" width=800 />
+   
+4. Ensure the Script Path field contains the correct path to locate the Jenkinsfile.
+5. Save Changes.
+6. Create a Jenkinsfile in the root folder of the application.
+7. Create a script.groovy file in the root folder of the application.
+8. Edit the Jenkinsfile and define the pipeline, tools, and stages as follows:
+   ```bash
+      def gv
+      
+      pipeline {   
+          agent any
+          tools{
+              maven 'maven-3.9'
+          }
+      
+          stages{ 
+      
+             stage("init"){
+                   steps{
+                       script{
+                           gv = load "java-maven-app/script.groovy"    
+                       }
+                    }
+              }
+      
+              
+              stage("build jar") {
+                      steps {
+                          script{
+                            gv.buildJar()
+                         }
+                      }
+              }
+          
+              stage("build image") {
+                      steps {
+                          script{
+                            gv.buildImage()
+                             
+                          }
+                      }
+              }
+                       
+              
+          
+              stage("deploy") {
+                  steps {
+                      script {
+                          gv.deployApp()
+                      }
+                  }
+              }              
+          }
+      } 
+   ```
+   <details><summary><strong> 💡 Loading a Groovy Script in a Nested Application Directory </strong></summary>
+   When loading the Groovy script in the init section, ensure that the variable points to the correct path. Since the checkout branch does not default to the application root folder, instruct Jenkins and Groovy to use the maven-java-app folder when loading the script.
+   </details>
+  
+
+9. Edit the script.groovy file and reference it from the Jenkinsfile using a global variable called gv.
+    ```bash
+          def buildJar() {
+          echo "building the application..."
+          dir('java-maven-app') {
+              sh 'mvn package'
+              }
+      }
+      
+      def buildImage() {
+          echo "building the docker Image..."
+          withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PWD', usernameVariable: 'USER')]){
+              sh """
+                  cd java-maven-app/
+                  docker build -t lala011/demo-app:jma-2.0 .
+                  echo $PWD | docker login -u $USER --password-stdin
+                  docker push lala011/demo-app:jma-2.0
+              """                               
+          }    
+      }
+      
+      
+      def deployApp() {
+          echo 'deploying the application...'
+      }
+      
+      return this
+    
+    ```
+   
+   <details><summary><strong> ❌ Issue  </strong></summary>
+     <ul>
+        <li>The shell session does not change the directory for the subsequent commands.</li>
+        <li>The Docker login fails with variables because of incorrect string interpolation.</li>
+    </ul>
+   </details>
+   
+
    
 ## ❌ Troubleshooting & Fixes
 
@@ -429,4 +537,70 @@ Ensure that the environment variable names match exactly between the Jenkins con
 </details>
 
 
-      
+
+### 🔴 **Issue**: Pipeline Job - The Shell session does not change the directory for the subsequent commands.
+
+
+📄 **Description**:
+The mvn package command fails because the directory change occurs in a separate shell session using the sh command. Each sh command runs in its own shell, so cd does not persist between steps. Use dir to maintain the working directory across sh commands.
+
+✅ **Solution**:
+To fix this issue, we had to use the dir to keep the directory between steps:
+ 
+  ```bash
+    dir('java-maven-app'){
+    sh 'mvn package'
+    }
+  ```
+
+### 🔴 **Issue**: Pipeline Job - The Docker login fails with variables because of incorrect string interpolation.
+
+📄 **Description**:
+The Docker login command fails to pass the username and password correctly. This occurs because the shell block uses single quotes instead of double quotes, preventing the variables from expanding to their values.
+
+✅ **Solution**:
+
+Use double quotes instead of single quotes in the shell block to enable proper string interpolation.
+
+
+<details><summary><strong> 💡String Interpolation💡</strong></summary>
+
+[String Interpolation](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/#string-interpolation)
+
+***String interpolation***: Jenkins Pipeline uses rules identical to Groovy for string interpolation. Groovy’s String interpolation support can be confusing to many newcomers to the language. While Groovy supports declaring a string with either single quotes, or double quotes, for example:
+  
+  ```bash
+  def singlyQuoted = 'Hello'
+  def doublyQuoted = "World"
+  ```
+  Only the latter string will support the dollar-sign ($) based string interpolation, for example:
+  
+  ```bash
+  def username = 'Jenkins'
+  echo 'Hello Mr. ${username}'
+  echo "I said, Hello Mr. ${username}"
+  ```
+  
+  Would result in:
+  
+  ```bash
+  Hello Mr. ${username}
+  I said, Hello Mr. Jenkins
+  ```
+  Understanding how to use string interpolation is vital for using some of Pipeline’s more advanced features."
+     
+</details>
+
+
+```bash
+  echo "building the docker image..."
+  withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PWD', usernameVariable: 'USER')]){
+    sh """
+      cd java-maven-app/
+      docker build -t lala011/demo-app:jma-2.0 .
+      echo $PWD | docker login -u $USER --password-stdin
+      docker push lala011/demo-app:jma-2.0
+    """                               
+}
+                    
+```
