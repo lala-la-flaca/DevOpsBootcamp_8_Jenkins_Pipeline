@@ -22,12 +22,13 @@ pipeline {
                     script{
                         echo "building the docker image..."
                         withCredentials([
-                            usernamePassword(credentials: 'docker-hub-repo', usernameVariable: 'USER', passwordVariable: 'PWD')]){
-                                dir('java-maven-app') {
-                                    sh 'docker build -t lala011/demo-app:jma-2.0 .'
-                                    sh 'echo $PWD | docker login -u $USER --password-stdin'
-                                    sh 'docker push lala011/demo-app:jma-2.0' 
-                                }                               
+                            usernamePassword(credentialsId: 'docker-hub-repo', usernameVariable: 'USER', passwordVariable: 'PWD')]){
+                                sh '''
+                                    cd java-maven-app/
+                                    docker build -t lala011/demo-app:jma-2.0 .'
+                                    echo $PWD | docker login -u $USER --password-stdin'
+                                    docker push lala011/demo-app:jma-2.0' 
+                                '''                               
                             }
                        
                     }
