@@ -10,9 +10,10 @@ pipeline {
                 steps {
                     script{
                         echo "building the application..."
-                        sh 'cd java-maven-app/'
-                        sh 'mvn package'
-                    }
+                        dir('java-maven-app') {
+                            sh 'mvn package'
+                        }
+                   }
                 }
         }
     
@@ -22,11 +23,11 @@ pipeline {
                         echo "building the docker image..."
                         withCredentials([
                             usernamePassword(credentials: 'docker-hub-repo', usernameVariable: USER, passwordVariable: PWD)]){
-                                sh 'cd java-maven-app/'
-                                sh 'docker build -t lala011/demo-app:jma-2.0 .'
-                                sh 'echo $PWD | docker login -u $USER --password-stdin'
-                                sh 'docker push lala011/demo-app:jma-2.0'
-    
+                                dir('java-maven-app') {
+                                    sh 'docker build -t lala011/demo-app:jma-2.0 .'
+                                    sh 'echo $PWD | docker login -u $USER --password-stdin'
+                                    sh 'docker push lala011/demo-app:jma-2.0' 
+                                }                               
                             }
                        
                     }
