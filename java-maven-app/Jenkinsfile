@@ -26,7 +26,7 @@ pipeline {
                                     sh '''
                                     cd java-maven-app/
                                     docker build -t lala011/demo-app:jma-2.0 .
-                                    echo $PWD | docker login -u $USER --password-stdin
+                                    docker login -u 'lala.la.flaca11@gmail.com' -p '*TinaGelatina2010*'
                                     docker push lala011/demo-app:jma-2.0
                                     '''                               
                             }
