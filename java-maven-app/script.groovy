@@ -1,3 +1,9 @@
+def testApp() {
+    echo "tetsing the application..."
+}
+
+
+
 def buildJar() {
     echo "building the application..."
     dir('java-maven-app') {
