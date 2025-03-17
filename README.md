@@ -471,7 +471,7 @@ The credentials can also be added or modified from the Security section under Cr
 
 9. Edit the script.groovy file and reference it from the Jenkinsfile using a global variable called gv.
     ```bash
-          def buildJar() {
+     def buildJar() {
           echo "building the application..."
           dir('java-maven-app') {
               sh 'mvn package'
@@ -507,10 +507,11 @@ The credentials can also be added or modified from the Security section under Cr
    </details>
    
 10. Pipeline Job OK
-    
-   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/commit/5f499c3bc161efad811c3f1be4d0bcd109fb1dfc" width=800 />
+
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/16%20build%20ok%20using%20groovy%20script.PNG" width=800 />
 
 12. Image available in Docker Hub
+
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/15%20Image%20available%20dockerhub.PNG" width=800 />
 
 
