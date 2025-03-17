@@ -396,16 +396,24 @@ The credentials can also be added or modified from the Security section under Cr
 1. Open Jenkins and go to the Main Menu.
 2. Click New Item, enter a Job Name, and select Pipeline Project.
 
-   <img src="" width=800 />
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/1%20create%20pipeline%20job.png" width=800 />
    
 3. In the Source Code Management section, connect the job to the Git repository where the application is stored.
 
-   <img src="" width=800 />
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20setting%20up%20job%20-%20git.png" width=800 />
    
 4. Ensure the Script Path field contains the correct path to locate the Jenkinsfile.
+   
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/3%20setting%20up%20job%20-%20git%20script%20path%20using%20jenkins%20file%20.png" width=800 />
+   
 5. Save Changes.
+   
 6. Create a Jenkinsfile in the root folder of the application.
+   
 7. Create a script.groovy file in the root folder of the application.
+
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/9%20groovy%20script.png" width=800 />
+   
 8. Edit the Jenkinsfile and define the pipeline, tools, and stages as follows:
    ```bash
       def gv
@@ -498,8 +506,16 @@ The credentials can also be added or modified from the Security section under Cr
     </ul>
    </details>
    
+10. Pipeline Job OK
+    
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/commit/5f499c3bc161efad811c3f1be4d0bcd109fb1dfc" width=800 />
 
-   
+12. Image available in Docker Hub
+    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/15%20Image%20available%20dockerhub.PNG" width=800 />
+
+
+
+
 ## ❌ Troubleshooting & Fixes
 
 ### 🔴 **Issue**: Freestyle Job - Jenkins cannot access the pom.xml file
