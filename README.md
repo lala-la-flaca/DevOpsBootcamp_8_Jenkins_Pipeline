@@ -515,6 +515,39 @@ The credentials can also be added or modified from the Security section under Cr
     <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/15%20Image%20available%20dockerhub.PNG" width=800 />
 
 
+### Creating a Mutibranch Job for a Java Maven Application
+1. Open Jenkins and navigate to the Main Menu.
+
+   <img src="" width=800/>
+   
+2. Click New Item, enter a Job Name, and select a Multibranch job.
+   
+   <img src="" width=800/>
+   
+3. Under Branch Sources, click Add Source and select Git.
+ 
+   <img src="" width=800/>
+   
+4. Enter the project repository URL and add the credentials for access.
+   
+   <img src="" width=800/>
+   
+5. In Behaviors, click Add and choose Filter by Name (with Regular Expressions).
+ 
+   <img src="" width=800/>
+   
+6. Ensure the Build Configuration points to the root directory containing the Jenkinsfile.
+
+   <img src="" width=800/>
+   
+
+
+
+
+
+
+
+
 
 
 ## ❌ Troubleshooting & Fixes
@@ -551,7 +584,7 @@ When attempting to log in to Docker Hub using the docker login command, Jenkins 
 
 <b>✅ Solution: </b></br>
 
-Ensure that the environment variable names match exactly between the Jenkins configuration and the docker login command. Since Jenkins is case-sensitive, updating the variable names to uppercase resolved the issue.
+Ensure that the environment variable names match the Jenkins configuration and the docker login command. Since Jenkins is case-sensitive, updating the variable names to uppercase resolved the issue.
 
 <details><summary><strong> Jenkins Console Output  </strong></summary>
    <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/error%20when%20using%20env%20variables.png" width=800 />
@@ -605,7 +638,7 @@ Use double quotes instead of single quotes in the shell block to enable proper s
   echo "I said, Hello Mr. ${username}"
   ```
   
-  Would result in:
+  This would result in:
   
   ```bash
   Hello Mr. ${username}
