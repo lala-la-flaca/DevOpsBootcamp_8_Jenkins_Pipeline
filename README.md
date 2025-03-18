@@ -517,30 +517,27 @@ The credentials can also be added or modified from the Security section under Cr
 
 ### Creating a Mutibranch Job for a Java Maven Application
 1. Open Jenkins and navigate to the Main Menu.
-
-   <img src="" width=800/>
    
 2. Click New Item, enter a Job Name, and select a Multibranch job.
    
-   <img src="" width=800/>
+  <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/1%20Creating%20a%20Multibranch%20pipeline.png" width=800/>
    
 3. Under Branch Sources, click Add Source and select Git.
- 
-   <img src="" width=800/>
    
 4. Enter the project repository URL and add the credentials for access.
    
-   <img src="" width=800/>
-   
-5. In Behaviors, click Add and choose Filter by Name (with Regular Expressions).
+5. In Behaviors, click Add and choose Filter by Name (with Regular Expressions). Use the regular expression .* to scan all available branches.
  
-   <img src="" width=800/>
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/2%20Adding%20Git%20and%20all%20branches%20with%20regular%20expressions.png" width=800/>
    
 6. Ensure the Build Configuration points to the root directory containing the Jenkinsfile.
 
-   <img src="" width=800/>
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/3%20root%20directory%20where%20jenkinsfile%20is%20saved.png" width=800/>
    
-
+7. Run the multibranch pipeline and now all branches have been executed
+   
+   <img src="https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_Pipeline/blob/main/Img/5%20multibranch%20pipeline%20updating%20jenkins%20file.PNG" width=800/>
+   
 
 
 
