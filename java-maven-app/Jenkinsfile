@@ -1,3 +1,6 @@
+#!/user/bin/env groovy
+//importing the shared library with its name defined in Jenkins. As we have a variable definition with groovy script we don't need the _ at the end of the library import  @Library('jenkins-shared-library')_
+@Library('jenkins-shared-library')
 def gv
 
 pipeline {   
@@ -16,51 +19,23 @@ pipeline {
               }
         }
 
-          stage("test"){
+          stage("build jar"){
              steps{
                  script{
-                     gv.testApp()
-                     echo "Executing pipeline for branch $BRANCH_NAME"
+                     buildJar()
                  }
               }
         }
 
-        
-        stage("build jar") {
+         stage("build Image"){
+                     steps{
+                         script{
+                             buildImage()
+                         }
+                     }
+         }
 
-            when {
-                expression{
-                    BRANCH_NAME == "main"                    
-                }
-                
-            }
 
-            
-            steps {
-                script{
-                    gv.buildJar()
-                }
-            }
-        }
-    
-        stage("build image") {
-
-             when {
-                expression{
-                    BRANCH_NAME == "main"                    
-                }
-                
-            }
-                steps {
-                    script{
-                      gv.buildImage()
-                       
-                    }
-                }
-        }
-                 
-        
-    
         stage("deploy") {
 
              when {
