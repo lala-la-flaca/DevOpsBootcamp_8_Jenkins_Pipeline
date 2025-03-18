@@ -27,10 +27,12 @@ pipeline {
               }
         }
 
-         stage("build Image"){
+         stage("build and Push Image"){
                      steps{
                          script{
                              buildImage 'lala011/demo-app:jma-3.0'
+                             dockerLogin()
+                             dockerPush 'lala011/demo-app:jma-3.0'
                          }
                      }
          }
