@@ -1,6 +1,15 @@
 #!/user/bin/env groovy
 //importing the shared library with its name defined in Jenkins. As we have a variable definition with groovy script we don't need the _ at the end of the library import  @Library('jenkins-shared-library')_
-@Library('jenkins-shared-library')
+//The line below is used to use the Global library defined in Jenkins system Global
+//@Library('jenkins-shared-library')
+
+//Define the library only for specific project
+
+library identifier: 'jenkins-shared-library@main', retriever: modernSCM(
+    [$class: 'GitSCMSoruce',
+     remote: 'https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_SharedLibrary.git',
+     credentials: 'github-credentials2'])
+
 def gv
 
 pipeline {   
