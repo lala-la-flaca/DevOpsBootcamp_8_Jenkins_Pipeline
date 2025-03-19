@@ -6,7 +6,7 @@
 //Define the library only for specific project
 
 library identifier: 'jenkins-shared-library@main', retriever: modernSCM(
-    [$class: 'GitSCMSoruce',
+    [$class: 'GitSCMSource',
      remote: 'https://github.com/lala-la-flaca/DevOpsBootcamp_8_Jenkins_SharedLibrary.git',
      credentialsId: 'github-credentials2'])
 
